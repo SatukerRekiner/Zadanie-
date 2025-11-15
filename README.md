@@ -1,6 +1,6 @@
 # Zadania rekrutacyjne – Junior Data Engineer (DataFuze)
 
-Autor: **Filip**  
+Autor: **Filip Galiński**  
 Baza: **Oracle Database 21c XE** (XEPDB1)  
 Narzędzie: **SQL*Plus** / **SQL Developer**
 
