@@ -394,10 +394,20 @@ W obecnej formie całość jest gotowa do uruchomienia i weryfikacji.
 
 ## Screenshots
 
-Poniżej przykładowe zrzuty ekranu z lokalnego uruchomienia skryptów:
+### COMPARATOR – testy (Zadania 1–2)
 
-- `comparator_tests.png` – wynik działania `03_comparator_tests.sql`
-- `reservation_tests.png` – wynik działania `03_reservation_tests.sql`
-- `reports_zad4.png` – przykładowy wycinek widoku `v_raport_miesieczny_sprzedaz`
-- `reports_zad5.png` – wynik widoku `v_najlepsi_sprzedawcy_luty2024`
+![Wynik skryptu 03_comparator_tests.sql](screenshots/comparator_tests.png)
+
+### RESERVATION – testy (Zadanie 3)
+
+![Wynik skryptu 03_reservation_tests.sql](screenshots/reservation_tests.png)
+
+### REPORTS – Zadanie 4
+
+![Fragment widoku v_raport_miesieczny_sprzedaz](screenshots/reports_zad4.png)
+
+### REPORTS – Zadanie 5
+
+![Widok v_najlepsi_sprzedawcy_luty2024](screenshots/reports_zad5.png)
+
 
