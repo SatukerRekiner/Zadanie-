@@ -396,11 +396,11 @@ W obecnej formie całość jest gotowa do uruchomienia i weryfikacji.
 
 ### COMPARATOR – testy (Zadania 1–2)
 
-![Wynik skryptu 03_comparator_tests.sql](screenshots/comparator_tests.png)
+![Wynik skryptu 03_comparator_tests.sql](screenshots/comparator_test.png)
 
 ### RESERVATION – testy (Zadanie 3)
 
-![Wynik skryptu 03_reservation_tests.sql](screenshots/reservation_tests.png)
+![Wynik skryptu 03_reservation_tests.sql](screenshots/reservation_test.png)
 
 ### REPORTS – Zadanie 4
 
