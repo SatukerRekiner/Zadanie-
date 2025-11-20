@@ -41,3 +41,4 @@ FROM
        AND s.dt <  ADD_MONTHS(m.month_start, 1)
 GROUP BY
     p.id, p.imie, p.nazwisko, m.month_start;
+
