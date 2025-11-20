@@ -44,3 +44,4 @@ WHERE rn = 1;
 -- Przykładowe użycie:
 -- SELECT * FROM v_najlepsi_sprzedawcy_luty2024
 -- ORDER BY reg_id, pracownik_id;
+
