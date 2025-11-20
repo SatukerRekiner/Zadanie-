@@ -32,7 +32,7 @@ END;
 /
 
 ----------------------------------------------------------------------
--- Tabele zgodnie z treścią zadania :contentReference[oaicite:0]{index=0}
+-- Tabele zgodnie z treścią zadania
 ----------------------------------------------------------------------
 
 CREATE TABLE regiony (
@@ -123,3 +123,4 @@ INSERT INTO sprzedaz (id, dt, prac_id, wartosc)
 VALUES (13, DATE '2025-08-22', 5, 800);
 
 COMMIT;
+
