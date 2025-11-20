@@ -10,12 +10,13 @@ Repozytorium zawiera rozwiązania wszystkich 5 zadań rekrutacyjnych:
 - **Zadanie 3 (+ część „dla chętnych”)** – projekt **RESERVATION**  
 - **Zadania 4–5** – projekt **REPORTS**
 
-WYMAGANIA STRUKTURA PROJEKTU INSTRUKCJA STARTU
+[WYMAGANIA](#wymagania) • [STRUKTURA PROJEKTU](#struktura-projektu) • [JAK URUCHOMIĆ CAŁY ZESTAW ZADAŃ](#Jak-uruchomić-cały-zestaw-zadań)
+
 
 ---
 
 
-## 1-2. COMPARATOR (Zadania 1–2)
+## 1/2. COMPARATOR (Zadania 1–2)
 
 ### Cel
 
