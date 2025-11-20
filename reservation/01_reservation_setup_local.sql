@@ -93,3 +93,4 @@ CREATE SEQUENCE res_attempt_seq
     NOCACHE;
 
 COMMIT;
+
