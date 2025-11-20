@@ -11,9 +11,9 @@ COMMIT;
 PROMPT *** TEST 1: Tylko statusy (Zadanie 1) ***
 BEGIN
     comparator_pkg.compare_fact(
-        p_id_pack_old => 1,
-        p_id_pack_new => 2,
-        p_build_diff  => 0
+        id_pack_old => 1,
+        id_pack_new => 2,
+        build_diff  => FALSE
     );
 END;
 /
@@ -29,9 +29,9 @@ COMMIT;
 
 BEGIN
     comparator_pkg.compare_fact(
-        p_id_pack_old => 1,
-        p_id_pack_new => 2,
-        p_build_diff  => 1
+        id_pack_old => 1,
+        id_pack_new => 2,
+        build_diff  => TRUE
     );
 END;
 /
@@ -43,3 +43,4 @@ ORDER BY id_fact;
 PROMPT *** WYNIKI: TMP_FACT_HISTORY_COMPARE_DIFF ***
 SELECT * FROM tmp_fact_history_compare_diff
 ORDER BY id_fact, col_name;
+
