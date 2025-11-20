@@ -10,76 +10,12 @@ Repozytorium zawiera rozwiązania wszystkich 5 zadań rekrutacyjnych:
 - **Zadanie 3 (+ część „dla chętnych”)** – projekt **RESERVATION**  
 - **Zadania 4–5** – projekt **REPORTS**
 
----
-
-## 1. Wymagania wstępne
-
-- Oracle Database XE 21c (testowane na XEPDB1)  
-- Użytkownik z uprawnieniami do:
-  - tworzenia tabel, sekwencji, widoków,
-  - uruchamiania PL/SQL (pakiety, procedury).  
-- Możliwość połączenia jako użytkownik **SYSTEM** (tak robiłem na lokalnej instancji).
-
-We wszystkich przykładach używam:
-
-```sql
-CONNECT system/<haslo>
-ALTER SESSION SET CONTAINER = XEPDB1;
-```
-
-Ścieżki do plików możena dostosować do własnej lokalizacji.
+WYMAGANIA STRUKTURA PROJEKTU INSTRUKCJA STARTU
 
 ---
 
-## 2. Struktura katalogów i plików
 
-```
-comparator/
-  01_comparator_setup_local.sql     -- utworzenie tabel + danych testowych
-  02_comparator_pkg.sql             -- rozwiązanie zad. 1 oraz 2
-  03_comparator_tests.sql           -- testy
-
-reservation/
-  01_reservation_setup_local.sql    -- utworzenie tabel + danych testowych
-  02_reservation_pkg.sql            -- rozwiązanie zad. 3
-  03_reservation_tests.sql          -- testy
-
-reports/
-  01_reports_setup_local.sql        -- utworzenie tabel + danych testowych
-  02_zad4_miesieczny_raport.sql     -- zadanie 4
-  03_zad5_najlepsi_luty2024.sql     -- zadanie 5
-```
-
----
-
-## 3. Jak uruchomić cały zestaw zadań
-
-Przykład dla SQL*Plus:
-
-```sql
-CONNECT system/<haslo>
-ALTER SESSION SET CONTAINER = XEPDB1;
-
--- Zadania 1–2 (COMPARATOR)
-@<sciezka>/comparator/01_comparator_setup_local.sql
-@<sciezka>/comparator/02_comparator_pkg.sql
-@<sciezka>/comparator/03_comparator_tests.sql
-
--- Zadanie 3 (RESERVATION)
-@<sciezka>/reservation/01_reservation_setup_local.sql
-@<sciezka>/reservation/02_reservation_pkg.sql
-@<sciezka>/reservation/03_reservation_tests.sql
-
--- Zadania 4–5 (REPORTS)
-@<sciezka>/reports/01_reports_setup_local.sql
-@<sciezka>/reports/02_zad4_miesieczny_raport.sql
-@<sciezka>/reports/03_zad5_najlepsi_luty2024.sql
-```
-
-
----
-
-## 4. COMPARATOR (Zadania 1–2)
+## 1/2. COMPARATOR (Zadania 1–2)
 
 ### Cel
 
@@ -153,7 +89,7 @@ Plik: `03_comparator_tests.sql`
 
 ---
 
-## 5. RESERVATION (Zadanie 3 + anulowanie „dla chętnych”)
+## 3. RESERVATION (Zadanie 3 + anulowanie „dla chętnych”)
 
 ### Cel
 
@@ -295,7 +231,7 @@ Na końcu skryptu:
 
 ---
 
-## 6. REPORTS (Zadania 4–5)
+## 4/5. REPORTS (Zadania 4–5)
 
 ### Setup danych
 
@@ -380,7 +316,7 @@ Dla przygotowanych danych:
 
 ---
 
-## 7. Podsumowanie
+## Podsumowanie
 
 - Każde zadanie (4 oraz 5 indywidualnie) ma:
   - osobny skrypt setupu (tabele + dane),
@@ -409,5 +345,73 @@ W obecnej formie całość jest gotowa do uruchomienia i weryfikacji.
 ### REPORTS – Zadanie 5
 
 ![Widok v_najlepsi_sprzedawcy_luty2024](screenshots/reports_zad5.png)
+
+---
+
+## Wymagania wstępne
+
+- Oracle Database XE 21c (testowane na XEPDB1)  
+- Użytkownik z uprawnieniami do:
+  - tworzenia tabel, sekwencji, widoków,
+  - uruchamiania PL/SQL (pakiety, procedury).  
+- Możliwość połączenia jako użytkownik **SYSTEM** (tak robiłem na lokalnej instancji).
+
+We wszystkich przykładach używam:
+
+```sql
+CONNECT system/<haslo>
+ALTER SESSION SET CONTAINER = XEPDB1;
+```
+
+Ścieżki do plików możena dostosować do własnej lokalizacji.
+
+---
+
+## Struktura katalogów i plików
+
+```
+comparator/
+  01_comparator_setup_local.sql     -- utworzenie tabel + danych testowych
+  02_comparator_pkg.sql             -- rozwiązanie zad. 1 oraz 2
+  03_comparator_tests.sql           -- testy
+
+reservation/
+  01_reservation_setup_local.sql    -- utworzenie tabel + danych testowych
+  02_reservation_pkg.sql            -- rozwiązanie zad. 3
+  03_reservation_tests.sql          -- testy
+
+reports/
+  01_reports_setup_local.sql        -- utworzenie tabel + danych testowych
+  02_zad4_miesieczny_raport.sql     -- zadanie 4
+  03_zad5_najlepsi_luty2024.sql     -- zadanie 5
+```
+
+---
+
+## Jak uruchomić cały zestaw zadań
+
+Przykład dla SQL*Plus:
+
+```sql
+CONNECT system/<haslo>
+ALTER SESSION SET CONTAINER = XEPDB1;
+
+-- Zadania 1–2 (COMPARATOR)
+@<sciezka>/comparator/01_comparator_setup_local.sql
+@<sciezka>/comparator/02_comparator_pkg.sql
+@<sciezka>/comparator/03_comparator_tests.sql
+
+-- Zadanie 3 (RESERVATION)
+@<sciezka>/reservation/01_reservation_setup_local.sql
+@<sciezka>/reservation/02_reservation_pkg.sql
+@<sciezka>/reservation/03_reservation_tests.sql
+
+-- Zadania 4–5 (REPORTS)
+@<sciezka>/reports/01_reports_setup_local.sql
+@<sciezka>/reports/02_zad4_miesieczny_raport.sql
+@<sciezka>/reports/03_zad5_najlepsi_luty2024.sql
+```
+
+---
 
 
