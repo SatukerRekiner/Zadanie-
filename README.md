@@ -123,11 +123,11 @@ Plik: `02_comparator_pkg.sql`
 
 Specyfikacja:
 
-- `PROCEDURE compare_fact(p_old_pack_id IN NUMBER, p_new_pack_id IN NUMBER);`  
+- `PROCEDURE compare_fact(id_pack_old IN NUMBER, id_pack_new IN NUMBER);``  
   - Zadanie 1 – uzupełnia tylko tabelę `tmp_fact_history_compare_status`.
 
-- `PROCEDURE compare_fact(p_old_pack_id IN NUMBER, p_new_pack_id IN NUMBER, p_build_diff IN NUMBER);`  
-  - Zadanie 2 – jeśli `p_build_diff <> 0`, uzupełnia też `tmp_fact_history_compare_diff` szczegółami różnic.
+- `PROCEDURE compare_fact(id_pack_old IN NUMBER, id_pack_new IN NUMBER, build_diff IN BOOLEAN DEFAULT FALSE);`  
+  - Zadanie 2 – jeśli `build_diff = TRUE`, uzupełnia też `tmp_fact_history_compare_diff` szczegółami różnic.
 
 W implementacji:
 
