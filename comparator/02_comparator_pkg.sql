@@ -31,19 +31,19 @@ CREATE OR REPLACE PACKAGE comparator_pkg AS
     --  -> uzupełnia TMP_FACT_HISTORY_COMPARE_STATUS
     ----------------------------------------------------------------------
     PROCEDURE compare_fact (
-        p_id_pack_old IN NUMBER,
-        p_id_pack_new IN NUMBER
+        id_pack_old IN NUMBER,
+        id_pack_new IN NUMBER
     );
 
     ----------------------------------------------------------------------
     -- ZADANIE 2:
-    --  COMPARE_FACT (ID_PACK_OLD, ID_PACK_NEW, BUILD_DIFF DEFAULT 0)
+    --  COMPARE_FACT (ID_PACK_OLD, ID_PACK_NEW, BUILD_DIFF DEFAULT FALSE)
     --  -> oprócz statusów opcjonalnie uzupełnia TMP_FACT_HISTORY_COMPARE_DIFF
     ----------------------------------------------------------------------
     PROCEDURE compare_fact (
-        p_id_pack_old IN NUMBER,
-        p_id_pack_new IN NUMBER,
-        p_build_diff  IN NUMBER DEFAULT 0   -- 0 = tylko statusy, !=0 = statusy + diff
+        id_pack_old IN NUMBER,
+        id_pack_new IN NUMBER,
+        build_diff  IN BOOLEAN DEFAULT FALSE   -- FALSE = tylko statusy, TRUE = statusy + diff
     );
 END comparator_pkg;
 /
@@ -54,17 +54,17 @@ CREATE OR REPLACE PACKAGE BODY comparator_pkg AS
 
     ------------------------------------------------------------------
     -- Wersja 2-parametrowa (Zadanie 1)
-    -- Deleguje do wersji 3-parametrowej z p_build_diff = 0
+    -- Deleguje do wersji 3-parametrowej z build_diff = FALSE
     ------------------------------------------------------------------
     PROCEDURE compare_fact (
-        p_id_pack_old IN NUMBER,
-        p_id_pack_new IN NUMBER
+        id_pack_old IN NUMBER,
+        id_pack_new IN NUMBER
     ) AS
     BEGIN
         compare_fact(
-            p_id_pack_old => p_id_pack_old,
-            p_id_pack_new => p_id_pack_new,
-            p_build_diff  => 0
+            id_pack_old => id_pack_old,
+            id_pack_new => id_pack_new,
+            build_diff  => FALSE
         );
     END compare_fact;
 
@@ -72,9 +72,9 @@ CREATE OR REPLACE PACKAGE BODY comparator_pkg AS
     -- Wersja 3-parametrowa (Zadanie 1 + Zadanie 2)
     ------------------------------------------------------------------
     PROCEDURE compare_fact (
-        p_id_pack_old IN NUMBER,
-        p_id_pack_new IN NUMBER,
-        p_build_diff  IN NUMBER DEFAULT 0
+        id_pack_old IN NUMBER,
+        id_pack_new IN NUMBER,
+        build_diff  IN BOOLEAN DEFAULT FALSE
     ) AS
     BEGIN
         ----------------------------------------------------------------------
@@ -94,8 +94,8 @@ CREATE OR REPLACE PACKAGE BODY comparator_pkg AS
         FROM fact_history f_old
         JOIN fact_history f_new
           ON f_new.id_fact = f_old.id_fact
-         AND f_new.id_pack = p_id_pack_new
-        WHERE f_old.id_pack = p_id_pack_old
+         AND f_new.id_pack = id_pack_new
+        WHERE f_old.id_pack = id_pack_old
           AND (
                 NVL(f_old.col_v1, '#NULL#')           <> NVL(f_new.col_v1, '#NULL#')
              OR NVL(f_old.col_n1, -999999999999)      <> NVL(f_new.col_n1, -999999999999)
@@ -112,8 +112,8 @@ CREATE OR REPLACE PACKAGE BODY comparator_pkg AS
         FROM fact_history f_new
         LEFT JOIN fact_history f_old
           ON f_old.id_fact = f_new.id_fact
-         AND f_old.id_pack = p_id_pack_old
-        WHERE f_new.id_pack = p_id_pack_new
+         AND f_old.id_pack = id_pack_old
+        WHERE f_new.id_pack = id_pack_new
           AND f_old.id_fact IS NULL;
 
         ----------------------------------------------------------------------
@@ -126,15 +126,15 @@ CREATE OR REPLACE PACKAGE BODY comparator_pkg AS
         FROM fact_history f_old
         LEFT JOIN fact_history f_new
           ON f_new.id_fact = f_old.id_fact
-         AND f_new.id_pack = p_id_pack_new
-        WHERE f_old.id_pack = p_id_pack_old
+         AND f_new.id_pack = id_pack_new
+        WHERE f_old.id_pack = id_pack_old
           AND f_new.id_fact IS NULL;
 
         ----------------------------------------------------------------------
         -- ZADANIE 2: szczegóły różnic w TMP_FACT_HISTORY_COMPARE_DIFF
-        -- tylko dla STATUS = 1 (MODIFIED) oraz gdy p_build_diff != 0
+        -- tylko dla STATUS = 1 (MODIFIED) oraz gdy build_diff = TRUE
         ----------------------------------------------------------------------
-        IF NVL(p_build_diff, 0) != 0 THEN
+        IF build_diff THEN
 
             -- Czyścimy poprzednie różnice
             DELETE FROM tmp_fact_history_compare_diff;
@@ -155,8 +155,8 @@ CREATE OR REPLACE PACKAGE BODY comparator_pkg AS
                 FROM fact_history f_old
                 JOIN fact_history f_new
                   ON f_new.id_fact = f_old.id_fact
-                 AND f_new.id_pack = p_id_pack_new
-                WHERE f_old.id_pack = p_id_pack_old
+                 AND f_new.id_pack = id_pack_new
+                WHERE f_old.id_pack = id_pack_old
                   AND (
                         NVL(f_old.col_v1, '#NULL#')           <> NVL(f_new.col_v1, '#NULL#')
                      OR NVL(f_old.col_n1, -999999999999)      <> NVL(f_new.col_n1, -999999999999)
